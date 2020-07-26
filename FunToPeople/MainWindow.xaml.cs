@@ -32,8 +32,9 @@ namespace FunToPeople
 			InitializeComponent();
 
 			BindData();
-			FtpClient ftpClient = new FtpClient();
-			ftpClient.Connect("localhost", "yah01", "FTPSERVER01");
+			FtpClient ftpClient = new FtpClient("localhost");
+			ftpClient.Connect("yah01", "FTPSERVER01");
+			ftpClient.FreshFileList();
 		}
 	}
 }

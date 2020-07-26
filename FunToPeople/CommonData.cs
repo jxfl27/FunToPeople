@@ -11,5 +11,10 @@ namespace FunToPeople
 		public static ObservableCollection<string> statusList = new ObservableCollection<string>();
 		public static ObservableCollection<string> localFileList = new ObservableCollection<string>();
 		public static ObservableCollection<string> remoteFileList = new ObservableCollection<string>();
+
+		public static void AddStatus(string status)
+		{
+			statusList.Add(status);
+		}
 	}
 }
