@@ -9,5 +9,7 @@ namespace FunToPeople
 	class CommonData
 	{
 		public static ObservableCollection<string> statusList = new ObservableCollection<string>();
+		public static ObservableCollection<string> localFileList = new ObservableCollection<string>();
+		public static ObservableCollection<string> remoteFileList = new ObservableCollection<string>();
 	}
 }
