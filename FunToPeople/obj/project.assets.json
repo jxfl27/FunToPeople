@@ -8,25 +8,20 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\yah\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\zerone\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\yah\\OneDrive\\Project\\C#\\FunToPeople\\FunToPeople\\FunToPeople.csproj",
+      "projectUniqueName": "C:\\Users\\zerone\\OneDrive\\Project\\C#\\FunToPeople\\FunToPeople\\FunToPeople.csproj",
       "projectName": "FunToPeople",
-      "projectPath": "C:\\Users\\yah\\OneDrive\\Project\\C#\\FunToPeople\\FunToPeople\\FunToPeople.csproj",
-      "packagesPath": "C:\\Users\\yah\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\yah\\OneDrive\\Project\\C#\\FunToPeople\\FunToPeople\\obj\\",
+      "projectPath": "C:\\Users\\zerone\\OneDrive\\Project\\C#\\FunToPeople\\FunToPeople\\FunToPeople.csproj",
+      "packagesPath": "C:\\Users\\zerone\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\zerone\\OneDrive\\Project\\C#\\FunToPeople\\FunToPeople\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\yah\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\zerone\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -66,7 +61,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
