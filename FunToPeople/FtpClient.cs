@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Net.Sockets;
 using System.IO;
 using System.Security.RightsManagement;
 using System.ComponentModel;
@@ -32,22 +31,22 @@ namespace FunToPeople
     {
         private TcpClient cmdClient;
         private TcpClient dataClient;
-        private NetworkStream cmdByteStream;
-        private StreamReader cmdStream;
-        private NetworkStream dataByteStream;
-        private StreamReader dataStream;
+        //private NetworkStream cmdByteStream;
+        //private StreamReader cmdStream;
+        //private NetworkStream dataByteStream;
+        //private StreamReader dataStream;
         private String cmdData;
         private byte[] byteData;
         private const String EndSignal = "\r\n";
         private string lastResponse;
-
+        
         public string Hostname;
         public const int FtpCmdPort = 21;
 
         // 获取命令端口结果
         private string getResponse()
         {
-            lastResponse = cmdStream.ReadLine();
+            lastResponse = cmdClient.ReadLine();
             CommonData.statusList.Add(lastResponse);
             return lastResponse;
         }
@@ -57,7 +56,7 @@ namespace FunToPeople
         {
             cmdData = packCommand(cmd, parameter);
             byteData = Encoding.ASCII.GetBytes(cmdData.ToCharArray());
-            cmdByteStream.Write(byteData, 0, byteData.Length);
+            cmdClient.Write(byteData);
             return getResponse();
         }
 
@@ -85,14 +84,11 @@ namespace FunToPeople
                 Convert.ToInt32(Regex.Match(resps[5], "[0-9]*").ToString());
 
             dataClient = new TcpClient(Hostname, dataPort);
-            dataStream = new StreamReader(dataClient.GetStream());
-            dataByteStream = dataClient.GetStream();
         }
 
         private void closeDataPort()
         {
-            dataStream.Close();
-            dataByteStream.Close();
+            dataClient.Close();
             getResponse();
 
             sendCommand(FtpCommand.ABOR);
@@ -113,7 +109,7 @@ namespace FunToPeople
 
             string filepath;
             bool sawFirstFile = false;
-            while ((filepath = dataStream.ReadLine()) != null)
+            while ((filepath = dataClient.ReadLine()) != null)
             {
                 if (sawFirstFile)
                     CommonData.remoteFileList.Add(filepath.Split(' ').Last());
@@ -139,8 +135,6 @@ namespace FunToPeople
             try
             {
                 cmdClient = new TcpClient(hostname, FtpCmdPort);
-                cmdStream = new StreamReader(cmdClient.GetStream());
-                cmdByteStream = cmdClient.GetStream();
                 getResponse();
 
                 sendCommand(FtpCommand.USER, username);
@@ -163,8 +157,7 @@ namespace FunToPeople
         public void Close()
         {
             sendCommand(FtpCommand.QUIT);
-            cmdStream.Close();
-            cmdByteStream.Close();
+            cmdClient.Close();
         }
 
         public void Download(string localPath,string remoteFileName)
@@ -178,7 +171,7 @@ namespace FunToPeople
 			byte[] dataBytes = new byte[1024];
 			int byteCnt = 0;
 
-			while((byteCnt = dataByteStream.Read(dataBytes,0,1024))>0)
+			while((byteCnt = dataClient.Read(dataBytes))>0)
 			{
 				fileStream.Write(dataBytes,0,byteCnt);
 			}
@@ -199,7 +192,7 @@ namespace FunToPeople
 			int byteCnt=0;
 			while((byteCnt = fileStream.Read(dataBytes,0,byteCnt)) >0)
 			{
-				dataByteStream.Write(dataBytes,0,byteCnt);
+				dataClient.Write(dataBytes);
 			}
 
 			fileStream.Close();

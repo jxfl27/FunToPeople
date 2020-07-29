@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Net.Sockets;
+using Microsoft.Win32;
 
 namespace FunToPeople
 {
@@ -40,6 +41,9 @@ namespace FunToPeople
 				return;
             }
             ftpClient.FreshFileList();
+
+           
+			
         }
     }
 }
