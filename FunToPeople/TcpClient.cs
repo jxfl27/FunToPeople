@@ -18,28 +18,25 @@ namespace FunToPeople
 
         private void flushBuffer(byte[] target, int offset, int n)
         {
-            for (int i = 0; i < n; i++)
+            for (int i = 0; n+i < buffer.Length; i++)
             {
-                target[i + offset] = buffer[i];
-                if (n + i < buffer.Length)
-                    buffer[i] = buffer[n + i];
+                if(i<n)
+                    target[i + offset] = buffer[i];
+                buffer[i] = buffer[n + i];
             }
             bufferElemNum -= n;
         }
 
         private string flushAllOrUntilEndSignal()
 		{
-            for (int i = 1; i < bufferElemNum; i++)
+            for (int i = 0; i < bufferElemNum; i++)
             {
-                if (buffer[i] == '\n' && buffer[i - 1] == '\r')
+                if (buffer[i] == '\n')
                 {
                     string message = ASCIIEncoding.ASCII.GetString(buffer.Take(i + 1).ToArray());
-                    for (int j = 0; j < i; j++)
+                    for (int j = 0; j+i+1 < buffer.Length; j++)
                     {
-                        if (j + i + 1 < buffer.Length)
-                        {
-                            buffer[j] = buffer[i + j + 1];
-                        }
+                        buffer[j] = buffer[j + i + 1];
                     }
 
                     bufferElemNum -= i + 1;

@@ -6,10 +6,12 @@
         xmlns:local="clr-namespace:FunToPeople"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280">
-    <Grid>
+	<Grid>
 		<ListBox Name="StatusListBox" Margin="244,510,244,10"/>
-		<ListBox Name="LocalFileListBox" Margin="10,10,966,221"/>
+		<ListBox Name="LocalFileListBox" Margin="10,102,956,221" PreviewMouseDoubleClick="LocalFileListBox_MouseDoubleClick"/>
 		<ListBox Name="RemoteFileListBox" Margin="966,10,10,221"/>
+		<TextBox x:Name="TextBox_LocalPath" Text="TextBox" TextWrapping="Wrap" Margin="10,43,956,611" Height="45"/>
+		<Button x:Name="Button_Goto" Content="转到" HorizontalAlignment="Left" Margin="329,46,0,0" VerticalAlignment="Top" Click="Button_Goto_Click" Height="20"/>
 
 	</Grid>
 </Window>
