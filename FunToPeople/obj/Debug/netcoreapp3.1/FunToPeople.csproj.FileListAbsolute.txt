@@ -35,3 +35,4 @@ C:\Users\zerone\OneDrive\Project\C#\FunToPeople\FunToPeople\obj\Debug\netcoreapp
 C:\Users\zerone\OneDrive\Project\C#\FunToPeople\FunToPeople\obj\Debug\netcoreapp3.1\FunToPeople.dll
 C:\Users\zerone\OneDrive\Project\C#\FunToPeople\FunToPeople\obj\Debug\netcoreapp3.1\FunToPeople.pdb
 C:\Users\zerone\OneDrive\Project\C#\FunToPeople\FunToPeople\obj\Debug\netcoreapp3.1\FunToPeople.genruntimeconfig.cache
+C:\Users\zerone\OneDrive\Project\C#\FunToPeople\FunToPeople\obj\Debug\netcoreapp3.1\FunToPeople.csprojAssemblyReference.cache

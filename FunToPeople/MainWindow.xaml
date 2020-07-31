@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1280">
 	<Grid>
-		<ListBox Name="StatusListBox" Margin="244,510,244,10"/>
-		<ListBox Name="LocalFileListBox" Margin="10,102,956,221" PreviewMouseDoubleClick="LocalFileListBox_MouseDoubleClick"/>
-		<ListBox Name="RemoteFileListBox" Margin="966,10,10,221"/>
-		<TextBox x:Name="TextBox_LocalPath" Text="TextBox" TextWrapping="Wrap" Margin="10,43,956,611" Height="45"/>
+		<ListBox Name="StatusListBox" Margin="493,539,429,10"/>
+		<ListBox Name="LocalFileListBox" Margin="10,132,956,191" PreviewMouseDoubleClick="LocalFileListBox_MouseDoubleClick"/>
+		<ListBox Name="RemoteFileListBox" Margin="966,10,10,221" MouseDoubleClick="RemoteFileListBox_MouseDoubleClick"/>
+		<TextBox x:Name="LocalPathTextBox" Text="TextBox" TextWrapping="Wrap" Margin="10,46,956,578"/>
 		<Button x:Name="Button_Goto" Content="转到" HorizontalAlignment="Left" Margin="329,46,0,0" VerticalAlignment="Top" Click="Button_Goto_Click" Height="20"/>
 
 	</Grid>
