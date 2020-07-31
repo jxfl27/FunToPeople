@@ -167,6 +167,7 @@ namespace FunToPeople
 
 			sendCommand(FtpCommand.RETR,remoteFileName);
 
+            localPath = System.IO.Path.Join(localPath, remoteFileName);
 			FileStream fileStream = new FileStream(localPath,FileMode.OpenOrCreate);
 			byte[] dataBytes = new byte[1024];
 			int byteCnt = 0;
@@ -185,12 +186,12 @@ namespace FunToPeople
         {
 			turnToPasvMode();
 
-			sendCommand(FtpCommand.STOR,localFileName);
+			sendCommand(FtpCommand.STOR,Path.GetFileName(localFileName));
 
-			FileStream fileStream = new FileStream(localFileName,FileMode.OpenOrCreate);
+			FileStream fileStream = new FileStream(localFileName,FileMode.Open);
 			byte[] dataBytes = new byte[1024];
-			int byteCnt=0;
-			while((byteCnt = fileStream.Read(dataBytes,0,byteCnt)) >0)
+            int byteCnt;
+			while((byteCnt = fileStream.Read(dataBytes,0,dataBytes.Length)) >0)
 			{
 				dataClient.Write(dataBytes);
 			}

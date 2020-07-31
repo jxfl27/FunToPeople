@@ -16,6 +16,7 @@ using System.Net.Sockets;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.IO;
+using System.IO.Enumeration;
 
 namespace FunToPeople
 {
@@ -37,6 +38,7 @@ namespace FunToPeople
 			InitializeComponent();
 			BindData();
 			localPath = AppDomain.CurrentDomain.BaseDirectory;
+			LocalPathTextBox.Text = localPath;
 			ftpClient.Connect("yah01", "FTPSERVER01");
 			ftpClient.FreshFileList();
 			FreshLocalFileList();
@@ -44,28 +46,22 @@ namespace FunToPeople
 
 		private void LocalFileListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
-			//点击本地文件列表时
-			//if (LocalFileListBox.SelectedIndex != -1 && LocalFileListBox.SelectedIndex < CommonData.LocalFolder && LocalFileListBox.IsMouseOver && e.ChangedButton == MouseButton.Left)
-			//{
-			//	string file = LocalFileListBox.SelectedItem as string;
-			//	if (LocalFileListBox.SelectedIndex > 0)//如果是文件夹则改写当前目录地址
-			//		CommonData.LocalPath += "\\" + file;
-			//	else
-			//	{   //列表的0项固定为..表示返回上一级目录
-			//		string[] temp = Regex.Split(CommonData.LocalPath, @"\\");
-			//		CommonData.LocalPath = "";
-			//		for (int i = 0; i < temp.Length - 1; i++) CommonData.LocalPath += temp[i];
-			//		//CommonData.LocalPath.Remove(CommonData.LocalPath.Length - 1- temp[temp.Length - 1].Length, temp[temp.Length - 1].Length);
-			//		//CommonData.LocalPath += "\\";
-			//	}
-			//	TextBox_LocalPath.Text = CommonData.LocalPath;
-			//	FreshLocalFileList();
-			//}
+			string fileName = System.IO.Path.Join(localPath, LocalFileListBox.SelectedItem.ToString());
+			if (Directory.Exists(fileName))
+			{
+				LocalPathTextBox.Text = localPath = fileName;
+				FreshLocalFileList();
+			}
+			else
+			{
+				ftpClient.Upload(fileName);
+				ftpClient.FreshFileList();
+			}
 		}
 
 		private void Button_Goto_Click(object sender, RoutedEventArgs e)//转到按钮 改写访问目录的地址为TextBox_LocalPath中的输入
 		{
-			localPath = TextBox_LocalPath.Text;
+			localPath = LocalPathTextBox.Text;
 			FreshLocalFileList();
 		}
 
@@ -89,6 +85,12 @@ namespace FunToPeople
 				string[] temp = Regex.Split(File, @"\\");
 				CommonData.localFileList.Add(temp[temp.Length - 1]);
 			}
+		}
+
+		private void RemoteFileListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			ftpClient.Download(localPath, RemoteFileListBox.SelectedItem.ToString());
+			FreshLocalFileList();
 		}
 	}
 }
